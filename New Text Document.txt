@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Surprise</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; background-color: #f0f0f0; padding: 20px; }
+        #initial { display: block; }
+        #surprise { display: none; }
+        .heart { animation: pulse 1s infinite; font-size: 50px; color: red; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+        .folder { display: inline-block; margin: 10px; padding: 20px; background: #fff; border: 2px solid #ccc; cursor: pointer; }
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 20px; max-width: 80%; }
+    </style>
+</head>
+<body>
+    <div id="initial">
+        <h1>Happy Birthday!</h1>
+        <p>Will you accept your birthday wishes?</p>
+        <button onclick="accept()">Yes</button>
+        <button onclick="decline()">No</button>
+    </div>
+    
+    <div id="surprise">
+        <div class="heart">❤️</div>
+        <p>Here's your surprise!</p>
+        <div class="folder" onclick="openModal('photos')">📁 Photos Gallery</div>
+        <div class="folder" onclick="openModal('letter')">📁 Letter</div>
+        <div class="folder" onclick="openModal('video')">📁 Video & Note</div>
+    </div>
+    
+    <!-- Modals for content -->
+    <div id="photos-modal" class="modal">
+        <div class="modal-content">
+            <h2>Photo Gallery</h2>
+            <!-- Add your images here. Replace with actual paths or URLs -->
+            <img src="photo1.jpg" alt="Photo 1" width="200"><br>
+            <img src="photo2.jpg" alt="Photo 2" width="200"><br>
+            <!-- Add more as needed -->
+            <button onclick="closeModal('photos')">Close</button>
+        </div>
+    </div>
+    
+    <div id="letter-modal" class="modal">
+        <div class="modal-content">
+            <h2>Your Letter</h2>
+            <p>Dear [Name], Happy Birthday! [Your heartfelt message here.]</p>
+            <button onclick="closeModal('letter')">Close</button>
+        </div>
+    </div>
+    
+    <div id="video-modal" class="modal">
+        <div class="modal-content">
+            <h2>Video & Note</h2>
+            <!-- Embed your video. Replace with actual URL -->
+            <video width="320" height="240" controls>
+                <source src="birthday-video.mp4" type="video/mp4">
+            </video>
+            <p>[Your note here, e.g., "Hope you have an amazing day!"]</p>
+            <button onclick="closeModal('video')">Close</button>
+        </div>
+    </div>
+    
+    <script>
+        function accept() {
+            document.getElementById('initial').style.display = 'none';
+            document.getElementById('surprise').style.display = 'block';
+        }
+        function decline() {
+            alert("Aww, maybe next time!");
+        }
+        function openModal(type) {
+            document.getElementById(type + '-modal').style.display = 'flex';
+        }
+        function closeModal(type) {
+            document.getElementById(type + '-modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
